@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Modèle User synchronisé avec Clerk
+model User {
+  id        String   @id // ID Clerk
+  email     String   @unique
+  firstName String?
+  lastName  String?
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  purchases     Purchase[]
+  subscriptions Subscription[]
+
+  @@map("users")
+}
+
+// Modèle Product pour les produits à vendre
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  price       Int      // Prix en centimes (ex: 2999 = 29,99€)
+  currency    String   @default("EUR")
+  stripeId    String   @unique // ID du produit dans Stripe
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  purchases Purchase[]
+
+  @@map("products")
+}
+
+// Modèle Purchase pour les achats uniques
+model Purchase {
+  id               String        @id @default(cuid())
+  userId           String
+  productId        String
+  stripeSessionId  String        @unique // ID de la session Stripe Checkout
+  stripePaymentId  String?       @unique // ID du paiement Stripe
+  amount           Int           // Montant payé en centimes
+  currency         String        @default("EUR")
+  status           PaymentStatus @default(PENDING)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  // Relations
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@map("purchases")
+}
+
+// Modèle Subscription pour les abonnements récurrents
+model Subscription {
+  id                 String           @id @default(cuid())
+  userId             String
+  stripeCustomerId   String           @unique // ID client Stripe
+  stripeSubscriptionId String         @unique // ID abonnement Stripe
+  stripePriceId      String           // ID du prix Stripe
+  status             SubscriptionStatus
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  cancelAtPeriodEnd  Boolean          @default(false)
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime         @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("subscriptions")
+}
+
+// Enum pour le statut des paiements
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+// Enum pour le statut des abonnements
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELED
+  INCOMPLETE
+  INCOMPLETE_EXPIRED
+  PAST_DUE
+  TRIALING
+  UNPAID
+}
