@@ -1,23 +1,51 @@
 import { SignUp } from "@clerk/nextjs";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Créer un compte</h1>
-          <p className="text-gray-600 mt-2">
-            Rejoignez Mon SaaS dès aujourd&apos;hui
+    <div className="min-h-screen relative">
+      {/* Bouton de retour avec shadcn/ui */}
+      <div className="fixed top-8 left-4 z-30">
+        <Button variant="outline" size="sm" asChild>
+          <Link href="/">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back
+          </Link>
+        </Button>
+      </div>
+
+      <div className="mt-24 flex items-center justify-center flex-col space-y-12 px-4">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-foreground">
+            Create an account
+          </h2>
+          <p className="mt-2 text-lg text-muted-foreground">
+            Sign up to get started
           </p>
         </div>
         <SignUp
           appearance={{
             elements: {
-              formButtonPrimary: "bg-slate-900 hover:bg-slate-800 text-white",
-              card: "shadow-lg",
+              card: "bg-card border border-border shadow-lg rounded-xl p-6",
+              headerTitle: "hidden",
+              headerSubtitle: "text-muted-foreground",
+              socialButtonsBlockButton__google: "bg-white hover:bg-white/60",
+              dividerText: "text-muted-foreground",
+              dividerLine: "bg-border",
+              formFieldLabel: "text-foreground",
+              footer: "hidden",
             },
           }}
+          forceRedirectUrl="/dashboard"
         />
+        <p className="mt-2 text-lg text-muted-foreground">
+          Already have an account?{" "}
+          <Link href="/sign-in" className="underline">
+            Sign in
+          </Link>
+        </p>
       </div>
     </div>
   );

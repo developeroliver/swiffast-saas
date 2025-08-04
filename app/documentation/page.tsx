@@ -15,21 +15,30 @@ import {
   AlertCircle,
   ExternalLink,
 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default function DocsPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
+      <div className="fixed top-8 left-4 z-30">
+        <Button variant="outline" size="sm" asChild>
+          <Link href="/">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back
+          </Link>
+        </Button>
+      </div>
       {/* Header */}
-      <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-12">
+      <div className="bg-background border-b">
+        <div className="container mx-auto px-4 py-32">
           <div className="max-w-3xl">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              📚 Documentation SwiftUI Pro
+            <h1 className="text-4xl font-bold text-foreground mb-">
+              📚 SwiftFast Documentation
             </h1>
-            <p className="text-xl text-gray-600">
-              Guide complet pour utiliser votre boilerplate SwiftUI et créer des
-              applications iOS professionnelles rapidement.
+            <p className="text-xl text-gray-400">
+              Complete guide to using your SwiftUI boilerplate and creating
+              professional iOS apps quickly.
             </p>
           </div>
         </div>
@@ -96,7 +105,7 @@ export default function DocsPage() {
           <div className="lg:col-span-3 space-y-12">
             {/* Getting Started */}
             <section id="getting-started">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl font-bold text-foreground mb-6">
                 🚀 Démarrage rapide
               </h2>
 
@@ -112,7 +121,7 @@ export default function DocsPage() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <ol className="list-decimal list-inside space-y-3 text-gray-700">
+                    <ol className="list-decimal list-inside space-y-3 text-gray-400">
                       <li>
                         Depuis dashboard entrer votre usernameGitHub et valider
                       </li>
@@ -163,7 +172,7 @@ export default function DocsPage() {
 
             {/* Installation */}
             <section id="installation">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl font-bold text-foreground mb-6">
                 ⚙️ Installation
               </h2>
 
@@ -182,7 +191,7 @@ export default function DocsPage() {
                         </p>
                         <p>cd swiftfast</p>
                       </div>
-                      <p className="text-gray-600">
+                      <p className="text-gray-400">
                         Ou téléchargez directement le ZIP depuis votre dashboard
                         SwiftUI Pro.
                       </p>
@@ -200,7 +209,7 @@ export default function DocsPage() {
                         <p># Renommez le projet</p>
                         <p>swift scripts/rename.swift SwiftFast VotreProjet</p>
                       </div>
-                      <p className="text-gray-600">
+                      <p className="text-gray-400">
                         Changer le nom du projet avant de l&apos;ouvrir dans
                         Xcode.
                       </p>
@@ -218,7 +227,7 @@ export default function DocsPage() {
                         <p># Ouvrir le projet</p>
                         <p>open VotreProjet.xcodeproj</p>
                       </div>
-                      <p className="text-gray-600">
+                      <p className="text-gray-400">
                         Le projet s&apos;ouvrira automatiquement dans Xcode avec
                         toutes les dépendances configurées.
                       </p>
@@ -232,7 +241,7 @@ export default function DocsPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      <ol className="list-decimal list-inside space-y-2 text-gray-700">
+                      <ol className="list-decimal list-inside space-y-2 text-gray-400">
                         <li>
                           Sélectionnez votre simulateur iOS (iPhone 15 Pro
                           recommandé)
@@ -270,7 +279,7 @@ export default function DocsPage() {
 
             {/* Configuration */}
             <section id="configuration">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl font-bold text-foreground mb-6">
                 🔧 Configuration
               </h2>
 
@@ -299,7 +308,7 @@ struct Keys {
                     <CardTitle>Configuration Firebase</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ol className="list-decimal list-inside space-y-2 text-gray-700">
+                    <ol className="list-decimal list-inside space-y-2 text-gray-400">
                       <li>
                         Créez un projet Firebase sur{" "}
                         <a
@@ -330,7 +339,7 @@ struct Keys {
                     <CardTitle>Configuration Stripe</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ol className="list-decimal list-inside space-y-2 text-gray-700">
+                    <ol className="list-decimal list-inside space-y-2 text-gray-400">
                       <li>
                         Créez un compte Revenue sur{" "}
                         <a
@@ -356,7 +365,7 @@ struct Keys {
 
             {/* Features */}
             <section id="features">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl font-bold text-foreground mb-6">
                 ✨ Fonctionnalités incluses
               </h2>
 
@@ -369,7 +378,7 @@ struct Keys {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2 text-gray-700">
+                    <ul className="space-y-2 text-gray-400">
                       <li>• Écrans d&apos;onboarding animés</li>
                       <li>• Système de navigation avancé</li>
                       <li>• Mode sombre/clair automatique</li>
@@ -387,7 +396,7 @@ struct Keys {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2 text-gray-700">
+                    <ul className="space-y-2 text-gray-400">
                       <li>• Login/Signup complet</li>
                       <li>• Connexion via Apple</li>
                       <li>• Biométrie (Face ID)</li>
@@ -404,7 +413,7 @@ struct Keys {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2 text-gray-700">
+                    <ul className="space-y-2 text-gray-400">
                       <li>• Clean Architecture + UseCase</li>
                       <li>• MVVM</li>
                       <li>• Dependency Injection</li>
@@ -422,7 +431,7 @@ struct Keys {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2 text-gray-700">
+                    <ul className="space-y-2 text-gray-400">
                       <li>• Paiements RevenueCat</li>
                       <li>• RevenueCat Paywall + Custom Paywall</li>
                       <li>• Notifications push</li>
@@ -436,7 +445,7 @@ struct Keys {
 
             {/* Customization */}
             <section id="customization">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl font-bold text-foreground mb-6">
                 🎨 Personnalisation
               </h2>
 
@@ -446,7 +455,7 @@ struct Keys {
                     <CardTitle>Couleurs et thème</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-400 mb-4">
                       Personnalisez facilement les couleurs de votre app dans le
                       fichier{" "}
                       <code className="bg-gray-100 px-2 py-1 rounded">
@@ -558,7 +567,7 @@ enum FontStyle: String {
                     <CardTitle>Polices personnalisées</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ol className="list-decimal list-inside space-y-2 text-gray-700">
+                    <ol className="list-decimal list-inside space-y-2 text-gray-400">
                       <li>
                         Ajoutez vos fichiers de police (.ttf, .otf) au projet
                       </li>
@@ -584,7 +593,7 @@ enum FontStyle: String {
                     <CardTitle>Icônes et images</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2 text-gray-700">
+                    <ul className="space-y-2 text-gray-400">
                       <li>
                         • Remplacez l&apos;icône d&apos;app dans{" "}
                         <code className="bg-gray-100 px-2 py-1 rounded">
@@ -605,7 +614,7 @@ enum FontStyle: String {
 
             {/* Deployment */}
             <section id="deployment">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl font-bold text-foreground mb-6">
                 🚢 Déploiement
               </h2>
 
@@ -615,10 +624,10 @@ enum FontStyle: String {
                     <CardTitle>Préparer pour l&apos;App Store</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ol className="list-decimal list-inside space-y-3 text-gray-700">
+                    <ol className="list-decimal list-inside space-y-3 text-gray-400">
                       <li>
                         <strong>Configurez votre Bundle ID</strong>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <p className="text-sm text-gray-500 mt-1">
                           Changez{" "}
                           <code className="bg-gray-100 px-2 py-1 rounded">
                             com.yourcompany.appname
@@ -680,7 +689,7 @@ enum FontStyle: String {
                         "Version de build incrémentée",
                       ].map((item, index) => (
                         <div key={index} className="flex items-center">
-                          <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                          <CheckCircle className="h-4 w-4 text-green-400 mr-2 flex-shrink-0" />
                           <span className="text-gray-700">{item}</span>
                         </div>
                       ))}
@@ -692,105 +701,12 @@ enum FontStyle: String {
 
             {/* Support */}
             <section id="support">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                💬 Support
-              </h2>
-
               <div className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Ressources d&apos;aide</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid gap-4 md:grid-cols-2">
-                      <div className="space-y-3">
-                        <h4 className="font-semibold text-gray-900">
-                          Documentation Apple
-                        </h4>
-                        <ul className="space-y-1 text-sm">
-                          <li>
-                            <a
-                              href="https://developer.apple.com/documentation/swiftui"
-                              className="text-blue-600 hover:underline flex items-center"
-                            >
-                              SwiftUI Documentation
-                              <ExternalLink className="ml-1 h-3 w-3" />
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="https://developer.apple.com/app-store-connect/"
-                              className="text-blue-600 hover:underline flex items-center"
-                            >
-                              App Store Connect
-                              <ExternalLink className="ml-1 h-3 w-3" />
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-
-                      <div className="space-y-3">
-                        <h4 className="font-semibold text-gray-900">
-                          Communauté
-                        </h4>
-                        <ul className="space-y-1 text-sm">
-                          <li>
-                            <a
-                              href="#"
-                              className="text-blue-600 hover:underline flex items-center"
-                            >
-                              Discord SwiftUI Pro
-                              <ExternalLink className="ml-1 h-3 w-3" />
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              className="text-blue-600 hover:underline flex items-center"
-                            >
-                              GitHub Discussions
-                              <ExternalLink className="ml-1 h-3 w-3" />
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Contacter le support</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <p className="text-gray-600">
-                        Besoin d&apos;aide ? Notre équipe est là pour vous
-                        accompagner dans votre développement.
-                      </p>
-
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <Button asChild>
-                          <a href="mailto:support@swiftuipro.com">
-                            📧 Email Support
-                          </a>
-                        </Button>
-
-                        <Button variant="outline" asChild>
-                          <Link href="/dashboard">🎯 Retour au Dashboard</Link>
-                        </Button>
-                      </div>
-
-                      <div className="text-sm text-gray-500">
-                        <p>
-                          <strong>Temps de réponse :</strong>
-                        </p>
-                        <p>• Plan Pro : 24h maximum</p>
-                        <p>• Plan Enterprise : 12h maximum</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button variant="outline" asChild>
+                    <Link href="/dashboard">🎯 Retour au Dashboard</Link>
+                  </Button>
+                </div>
               </div>
             </section>
           </div>

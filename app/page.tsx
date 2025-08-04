@@ -8,10 +8,10 @@ export default function Home() {
     <div className="min-h-screen bg-background to-muted">
       {/* HEADER SECTION */}
       <Header />
-      <div className="container mx-auto px-4 py-16">
-        {/* HERO SECTION */}
-        <Hero />
 
+      {/* HERO SECTION */}
+      <Hero />
+      <div className="container mx-auto px-4 py-16">
         {/* HERO SECTION */}
         <Demo />
 

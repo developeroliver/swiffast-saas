@@ -6,9 +6,18 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="relative py-20 lg:py-32 overflow-hidden bg-background">
-      <div className="absolute inset-0 "></div>
-      <div className="absolute inset-0 bg-grid opacity-20"></div>
-      <div className="relative container-custom">
+      {/* Grille de fond pleine largeur uniquement sur Hero */}
+      <div
+        className="absolute top-0 left-0 w-full h-full
+        dark:bg-[linear-gradient(to_right,#4a5568_1px,transparent_1px),linear-gradient(to_bottom,#4a5568_1px,transparent_1px)]
+        bg-[linear-gradient(to_right,#333_1px,transparent_1px),linear-gradient(to_bottom,#333_1px,transparent_1px)]
+        bg-[size:3rem_3rem]
+        [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]
+        opacity-20 pointer-events-none z-0"
+      />
+
+      {/* Contenu Hero */}
+      <div className="relative container-custom z-10 mx-auto px-4">
         <AnimationContainer className="max-w-4xl mx-auto text-center">
           <AnimationContainer delay={0.2} className="mb-8 animate-fade-in">
             <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-100 text-blue-800 mb-6 hover-lift">
@@ -32,30 +41,18 @@ export default function Hero() {
               exceptional iOS apps.
             </p>
           </AnimationContainer>
+
           <AnimationContainer
             delay={0.8}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-slide-up"
           >
             <SignedOut>
-              <SignInButton>
-                <Button size="lg">Start now</Button>
-              </SignInButton>
               <Link href="/sign-up">
                 <Button variant="outline" size="lg">
-                  Create an account
+                  Start now
                 </Button>
               </Link>
             </SignedOut>
-            <SignedIn>
-              <Link href="/dashboard">
-                <Button size="lg">Access the Dashboard</Button>
-              </Link>
-              <Link href="/pricing">
-                <Button variant="outline" size="lg">
-                  See prices
-                </Button>
-              </Link>
-            </SignedIn>
           </AnimationContainer>
 
           <AnimationContainer
@@ -102,7 +99,7 @@ export default function Hero() {
                   clipRule="evenodd"
                 />
               </svg>
-              <span>lifetime updated</span>
+              <span>Lifetime updated</span>
             </div>
           </AnimationContainer>
         </AnimationContainer>
