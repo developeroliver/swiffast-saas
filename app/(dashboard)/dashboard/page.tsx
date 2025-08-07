@@ -25,6 +25,10 @@ type PurchasedProduct = {
   name: string;
 };
 
+type Purchase = {
+  amount: number;
+};
+
 export const metadata: Metadata = {
   title: "Dashboard",
   description:
@@ -52,7 +56,10 @@ export default async function Dashboard() {
   const hasStarter = purchasedProducts.some((p: PurchasedProduct) =>
     p.name.toLowerCase().includes("starter")
   );
-  const totalSpent: number = purchases.reduce((sum, p) => sum + p.amount, 0);
+  const totalSpent = purchases.reduce(
+    (sum: number, p: Purchase) => sum + p.amount,
+    0
+  );
   // ✅ LOGIQUE : Accès au boilerplate si Premium OU Starter
   const hasBoilerplateAccess = hasPremium || hasStarter;
 
