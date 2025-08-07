@@ -52,8 +52,7 @@ export default async function Dashboard() {
   const hasStarter = purchasedProducts.some((p: PurchasedProduct) =>
     p.name.toLowerCase().includes("starter")
   );
-  const totalSpent = purchases.reduce((sum, p) => sum + p.amount, 0);
-
+  const totalSpent: number = purchases.reduce((sum, p) => sum + p.amount, 0);
   // ✅ LOGIQUE : Accès au boilerplate si Premium OU Starter
   const hasBoilerplateAccess = hasPremium || hasStarter;
 
