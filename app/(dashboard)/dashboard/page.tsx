@@ -20,6 +20,11 @@ import { Crown, ShoppingBag, Github, Download } from "lucide-react";
 import Link from "next/link";
 import GitHubForm from "@/components/shared/GithubForm";
 
+type PurchasedProduct = {
+  id: string;
+  name: string;
+};
+
 export const metadata: Metadata = {
   title: "Dashboard",
   description:
@@ -41,10 +46,10 @@ export default async function Dashboard() {
   const purchases = await getUserPurchases(user.id);
   const purchasedProducts = await getUserPurchasedProducts(user.id);
 
-  const hasPremium = purchasedProducts.some((p) =>
+  const hasPremium = purchasedProducts.some((p: PurchasedProduct) =>
     p.name.toLowerCase().includes("premium")
   );
-  const hasStarter = purchasedProducts.some((p) =>
+  const hasStarter = purchasedProducts.some((p: PurchasedProduct) =>
     p.name.toLowerCase().includes("starter")
   );
   const totalSpent = purchases.reduce((sum, p) => sum + p.amount, 0);

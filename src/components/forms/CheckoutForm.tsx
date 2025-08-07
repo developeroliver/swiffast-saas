@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { CheckCircle } from "lucide-react";
-import type { PurchaseStatus, Product } from "@/lib/types";
+import type { PurchaseStatus } from "@/lib/types";
 
 interface CheckoutFormProps {
   priceId: string;
