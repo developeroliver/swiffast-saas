@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,23 +11,50 @@ import { Check } from "lucide-react";
 import Header from "@/components/layout/Header";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 
-const plans = [
-  {
-    name: "Pack Starter",
-    description: "Parfait pour commencer",
-    price: 9.99,
-    priceId: "price_1RsNIaPp891p9SBjdw4aJgmV", // Remplace par ton vrai Price ID Stripe
-    features: [
-      "Accès aux fonctionnalités de base",
-      "Support par email",
-      "5 projets maximum",
-      "Stockage 1GB",
-    ],
+export const metadata: Metadata = {
+  title: "Tarifs et Plans - Mon SaaS",
+  description:
+    "Découvrez nos tarifs transparents. Pack Starter à 9,99€ et Accès Premium à 29,99€. Fonctionnalités complètes, support inclus.",
+  keywords: [
+    "tarifs",
+    "prix",
+    "abonnement",
+    "premium",
+    "starter",
+    "9.99",
+    "299",
+  ],
+  openGraph: {
+    title: "Tarifs et Plans - Mon SaaS",
+    description:
+      "Pack Starter 9,99€ et Accès Premium 29,99€. Fonctionnalités complètes, support inclus.",
+    url: "https://www.swiftfast.me/pricing",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tarifs et Plans - Mon SaaS",
+    description:
+      "Pack Starter 9,99€ et Accès Premium 29,99€. Fonctionnalités complètes, support inclus.",
+  },
+};
+
+const plans = [
+  // {
+  //   name: "Pack Starter",
+  //   description: "Parfait pour commencer",
+  //   price: 9.99,
+  //   priceId: "price_1RsNIaPp891p9SBjdw4aJgmV", // Remplace par ton vrai Price ID Stripe
+  //   features: [
+  //     "Accès aux fonctionnalités de base",
+  //     "Support par email",
+  //     "5 projets maximum",
+  //     "Stockage 1GB",
+  //   ],
+  // },
   {
-    name: "Accès Premium",
-    description: "Pour les utilisateurs avancés",
-    price: 29.99,
+    name: "Full Access",
+    description: "For advanced users",
+    price: 299,
     priceId: "price_1RsNHuPp891p9SBjxstpIdZv", // Remplace par ton vrai Price ID Stripe
     popular: true,
     features: [
@@ -42,31 +70,31 @@ const plans = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-bacground">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <div className="container mx-auto px-4 py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-foreground mb-4">
-            Choisissez votre plan
+            Select your plan
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Sélectionnez le plan qui correspond le mieux à vos besoins
+            Select the plan that best suits your needs
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="flex justify-center max-w-4xl mx-auto">
           {plans.map((plan) => (
             <Card
               key={plan.name}
-              className={`relative ${
-                plan.popular ? "ring-2 ring-blue-500" : ""
+              className={`relative w-full max-w-md ${
+                plan.popular ? "bg-muted/30 ring-2 ring-blue-400" : ""
               }`}
             >
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                    Populaire
+                  <span className="bg-blue-400 text-white px-3 py-1 rounded-full text-sm font-medium">
+                    PopulaPopularire
                   </span>
                 </div>
               )}
@@ -97,7 +125,7 @@ export default function PricingPage() {
                 <SignedOut>
                   <SignInButton>
                     <Button className="w-full" size="lg">
-                      Se connecter pour acheter
+                      Log in to purchase
                     </Button>
                   </SignInButton>
                 </SignedOut>
@@ -107,11 +135,11 @@ export default function PricingPage() {
                     <input type="hidden" name="priceId" value={plan.priceId} />
                     <Button
                       type="submit"
-                      className="w-full"
+                      className="w-full hover:scale-105"
                       size="lg"
                       variant={plan.popular ? "default" : "outline"}
                     >
-                      Acheter maintenant
+                      Buy now
                     </Button>
                   </form>
                 </SignedIn>

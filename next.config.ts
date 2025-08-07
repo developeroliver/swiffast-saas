@@ -1,7 +1,35 @@
-import type { NextConfig } from "next";
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    formats: ["image/webp", "image/avif"],
+    domains: ["images.unsplash.com"], // Si tu uses des images externes
+  },
 
-const nextConfig: NextConfig = {
-  /* config options here */
+  // Optimisations
+  compress: true,
+
+  // Headers de sécurité
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "origin-when-cross-origin",
+          },
+        ],
+      },
+    ];
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

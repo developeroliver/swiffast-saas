@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
           { status: 400 }
         );
       }
-    } catch (error) {
+    } catch {
       return NextResponse.json(
         { error: "Produit non trouvé" },
         { status: 404 }

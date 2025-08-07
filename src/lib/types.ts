@@ -22,3 +22,12 @@ export interface EmailData {
   purchaseDate: Date;
   isPremium: boolean;
 }
+
+export interface GitHubRequest {
+  id: string;
+  user_id: string;
+  github_username: string;
+  status: "pending" | "approved" | "rejected";
+  created_at: string;
+  processed_at?: string;
+}

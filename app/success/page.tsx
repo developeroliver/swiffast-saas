@@ -12,10 +12,11 @@ import Header from "@/components/layout/Header";
 import Link from "next/link";
 import { currentUser } from "@clerk/nextjs/server";
 import { getUserPurchasedProducts } from "@/lib/db";
+import type { Product } from "@/lib/types";
 
 async function SuccessContent() {
   const user = await currentUser();
-  let purchasedProducts: any[] = [];
+  let purchasedProducts: Product[] = [];
   let hasPremium = false;
 
   if (user) {
@@ -99,7 +100,7 @@ async function SuccessContent() {
 
                 <Link href="/">
                   <Button variant="outline" className="w-full">
-                    Retour à l'accueil
+                    Retour à l&apos;accueil
                   </Button>
                 </Link>
               </div>

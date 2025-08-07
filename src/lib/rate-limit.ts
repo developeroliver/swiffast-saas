@@ -14,7 +14,7 @@ class RateLimiter {
     const token = this.getToken(request);
     const tokenCount = (this.cache.get(token) || [0, Date.now()]) as [
       number,
-      number
+      number,
     ];
 
     if (Date.now() - tokenCount[1] > this.config.interval) {
@@ -54,7 +54,7 @@ class RateLimiter {
   // Méthode utilitaire pour nettoyer le cache périodiquement
   cleanup() {
     const now = Date.now();
-    for (const [token, [count, timestamp]] of this.cache.entries()) {
+    for (const [token, [timestamp]] of this.cache.entries()) {
       if (now - timestamp > this.config.interval) {
         this.cache.delete(token);
       }
@@ -94,8 +94,11 @@ export function getClientIP(request: NextRequest): string {
 }
 
 // Nettoyage automatique du cache toutes les 5 minutes
-setInterval(() => {
-  generalRateLimit.cleanup();
-  checkoutRateLimit.cleanup();
-  webhookRateLimit.cleanup();
-}, 5 * 60 * 1000);
+setInterval(
+  () => {
+    generalRateLimit.cleanup();
+    checkoutRateLimit.cleanup();
+    webhookRateLimit.cleanup();
+  },
+  5 * 60 * 1000
+);

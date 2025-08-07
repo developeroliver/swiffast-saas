@@ -24,8 +24,9 @@ interface Product {
 async function AlreadyPurchasedContent({
   searchParams,
 }: {
-  searchParams: { product?: string };
+  searchParams: Promise<{ product?: string }>;
 }) {
+  const params = await searchParams;
   const user = await currentUser();
   let purchasedProducts: Product[] = [];
   let productName = "ce produit";
@@ -35,7 +36,7 @@ async function AlreadyPurchasedContent({
       purchasedProducts = await getUserPurchasedProducts(user.id);
 
       // Si un produit spécifique est mentionné, le trouver
-      const productParam = searchParams.product;
+      const productParam = params.product;
       if (productParam) {
         const foundProduct = purchasedProducts.find(
           (p: Product) =>
@@ -52,12 +53,12 @@ async function AlreadyPurchasedContent({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Header />
 
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-2xl mx-auto">
-          <Card>
+          <Card className="bg-muted/30">
             <CardHeader className="text-center">
               <div className="mx-auto mb-4">
                 <CheckCircle className="h-16 w-16 text-blue-500" />
@@ -65,13 +66,13 @@ async function AlreadyPurchasedContent({
               <CardTitle className="text-3xl text-blue-600">
                 Produit déjà acheté !
               </CardTitle>
-              <CardDescription className="text-lg">
+              <CardDescription className="text-lg text-foreground">
                 Vous avez déjà accès à {productName}
               </CardDescription>
             </CardHeader>
 
             <CardContent className="space-y-6">
-              <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+              <div className="bg-green-50 p-4 rounded-lg border border-blue-200">
                 <h3 className="font-semibold text-blue-800 mb-2 flex items-center gap-2">
                   <CheckCircle className="h-5 w-5" />
                   Bonne nouvelle !
@@ -84,7 +85,7 @@ async function AlreadyPurchasedContent({
 
               {purchasedProducts.length > 0 && (
                 <div className="space-y-3">
-                  <h4 className="font-semibold text-gray-900">
+                  <h4 className="font-semibold text-foreground">
                     Vos produits achetés :
                   </h4>
                   {purchasedProducts.map((product: Product) => (
@@ -106,7 +107,7 @@ async function AlreadyPurchasedContent({
                 </div>
               )}
 
-              <div className="text-center text-gray-600">
+              <div className="text-center text-foreground">
                 <p className="mb-4">
                   Accédez à votre contenu premium ou explorez vos autres
                   options.
@@ -115,14 +116,18 @@ async function AlreadyPurchasedContent({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <Link href="/premium">
-                  <Button className="w-full" size="lg">
+                  <Button className="w-full hover:scale-105" size="lg">
                     <Eye className="h-4 w-4 mr-2" />
                     Voir mon contenu
                   </Button>
                 </Link>
 
                 <Link href="/dashboard">
-                  <Button variant="outline" className="w-full" size="lg">
+                  <Button
+                    variant="outline"
+                    className="w-full hover:scale-105"
+                    size="lg"
+                  >
                     Mon Dashboard
                   </Button>
                 </Link>
@@ -147,7 +152,7 @@ async function AlreadyPurchasedContent({
 export default function AlreadyPurchasedPage({
   searchParams,
 }: {
-  searchParams: { product?: string };
+  searchParams: Promise<{ product?: string }>;
 }) {
   return (
     <Suspense

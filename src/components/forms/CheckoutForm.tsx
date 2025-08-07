@@ -30,13 +30,11 @@ export default function CheckoutForm({
         .then((res) => res.json())
         .then((data: PurchaseStatus) => {
           if (data.products) {
-            const hasProduct = data.products.some(
-              (p: Product) =>
-                (productName.toLowerCase().includes("premium") &&
-                  data.hasPremium) ||
-                (productName.toLowerCase().includes("starter") &&
-                  data.hasStarter)
-            );
+            const hasProduct =
+              (productName.toLowerCase().includes("premium") &&
+                data.hasPremium) ||
+              (productName.toLowerCase().includes("starter") &&
+                data.hasStarter);
             setAlreadyPurchased(hasProduct);
           }
           setCheckingStatus(false);

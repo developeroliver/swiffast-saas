@@ -8,9 +8,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Crown, Download, BarChart3, Settings, Users } from "lucide-react";
+import { Crown, BarChart3, Users } from "lucide-react";
 import Header from "@/components/layout/Header";
-import PremiumContent from "@/components/layout/PremiumContent";
+import PremiumContent from "@/components/shared/PremiumContent";
 import { getUserPurchasedProducts } from "@/lib/db";
 
 export default async function PremiumPage() {
@@ -21,12 +21,6 @@ export default async function PremiumPage() {
   }
 
   const purchasedProducts = await getUserPurchasedProducts(user.id);
-  const hasPremium = purchasedProducts.some((p) =>
-    p.name.toLowerCase().includes("premium")
-  );
-  const hasStarter = purchasedProducts.some((p) =>
-    p.name.toLowerCase().includes("starter")
-  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -36,13 +30,9 @@ export default async function PremiumPage() {
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-4">
             <Crown className="h-8 w-8 text-yellow-500" />
-            <h1 className="text-3xl font-bold text-foreground">
-              Contenu Premium
-            </h1>
+            <h1 className="text-3xl font-bold text-foreground">Premium</h1>
           </div>
-          <p className="text-gray-400">
-            Accédez à vos fonctionnalités exclusives selon vos achats
-          </p>
+          <p className="text-gray-400">Access your exclusive features</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
@@ -54,29 +44,31 @@ export default async function PremiumPage() {
                 <CardHeader>
                   <div className="flex items-center gap-2">
                     <Crown className="h-6 w-6 text-purple-500" />
-                    <CardTitle>Fonctionnalités Premium</CardTitle>
+                    <CardTitle>Premium features</CardTitle>
                   </div>
                   <CardDescription>
-                    Achetez l&apos;Accès Premium pour débloquer toutes les
-                    fonctionnalités
+                    ere are all the Premium features
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2 mb-4 text-sm text-gray-400">
-                    <li>• Analytics avancés</li>
-                    <li>• Projets illimités</li>
-                    <li>• API Access</li>
-                    <li>• Support prioritaire 24/7</li>
-                    <li>• Stockage 100GB</li>
+                    <li>• Auth with Apple</li>
+                    <li>• RevenueCat</li>
+                    <li>• Notifications</li>
+                    <li>• Dark Mode</li>
+                    <li>• SwiftData Model</li>
+                    <li>• Settings View</li>
+                    <li>• iCloud folder</li>
+                    <li>• 12 langages</li>
+                    <li>• All Views are mockables</li>
+                    <li>• Customs fonts</li>
+                    <li>• 3 Widgets</li>
                   </ul>
-                  <Button className="w-full">
-                    Acheter Accès Premium - 29,99€
-                  </Button>
                 </CardContent>
               </Card>
             }
           >
-            {/* <Card className="border-purple-200">
+            <Card className="border-purple-200">
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <Crown className="h-6 w-6 text-purple-500" />
@@ -144,13 +136,15 @@ export default async function PremiumPage() {
                   </p>
                 </div>
               </CardContent>
-            </Card> */}
+            </Card>
           </PremiumContent>
 
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle>Mes achats</CardTitle>
-              <CardDescription>Aperçu de vos produits achetés</CardDescription>
+              <CardTitle>My purchases</CardTitle>
+              <CardDescription>
+                Overview of your purchased products
+              </CardDescription>
             </CardHeader>
             <CardContent>
               {purchasedProducts.length > 0 ? (
@@ -180,9 +174,9 @@ export default async function PremiumPage() {
               ) : (
                 <div className="text-center py-8 text-gray-400">
                   <Crown className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                  <p>Aucun achat pour le moment</p>
+                  <p>No purchases at this time</p>
                   <Button className="mt-4" asChild>
-                    <a href="/pricing">Voir nos tarifs</a>
+                    <a href="/pricing">See our prices</a>
                   </Button>
                 </div>
               )}

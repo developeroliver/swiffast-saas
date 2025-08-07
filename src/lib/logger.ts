@@ -16,9 +16,9 @@ class Logger {
     if (error) console.error(error.stack);
 
     // En production, tu peux envoyer vers un service comme Sentry
-    if (!this.isDev) {
-      this.sendToMonitoring("error", message, error, context);
-    }
+    // if (!this.isDev) {
+    //   this.sendToMonitoring("error", message, error, context);
+    // }
   }
 
   warn(message: string, context?: LogContext) {
@@ -31,15 +31,15 @@ class Logger {
     return `[${timestamp}] ${level}: ${message}${contextStr}`;
   }
 
-  private sendToMonitoring(
-    level: string,
-    message: string,
-    error?: Error,
-    context?: LogContext
-  ) {
-    // Implémente l'envoi vers ton service de monitoring
-    // Ex: Sentry, LogRocket, etc.
-  }
+  // private sendToMonitoring(
+  //   level: string,
+  //   message: string,
+  //   error?: Error,
+  //   context?: LogContext
+  // ) {
+  //   // Implémente l'envoi vers ton service de monitoring
+  //   // Ex: Sentry, LogRocket, etc.
+  // }
 }
 
 export const logger = new Logger();

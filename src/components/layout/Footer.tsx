@@ -1,12 +1,7 @@
 // src/components/layout/footer.tsx
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
-interface FooterProps {
-  className?: string;
-}
-
-export function Footer({ className }: FooterProps) {
+export function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {

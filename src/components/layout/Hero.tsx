@@ -2,6 +2,7 @@ import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import AnimationContainer from "../shared/AnimationContainer";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { Zap, CheckCircle } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -26,80 +27,63 @@ export default function Hero() {
           </AnimationContainer>
 
           <AnimationContainer delay={0.4}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 animate-slide-up">
-              Develop your iOS apps{" "}
-              <span className="text-gradient bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                10x faster
+            <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight">
+              From <span className="text-blue-600">Code</span> to the
+              <span className="text-blue-600">App Store</span>
+              <br />
+              in{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                5 days
               </span>
             </h1>
           </AnimationContainer>
 
           <AnimationContainer delay={0.6}>
-            <p className="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto animate-slide-up">
-              The ultimate SwiftUI boilerplate with modern architecture,
-              ready-to-use components, and everything you need to create
-              exceptional iOS apps.
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+              The SwiftUI boilerplate that saves freelance developers{" "}
+              <strong>3 months</strong> of work. Clean Architecture, Auth,
+              Payments, and Push Notifications{" "}
+              <strong>already integrated</strong>.
             </p>
           </AnimationContainer>
 
           <AnimationContainer
             delay={0.8}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 animate-slide-up"
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
           >
             <SignedOut>
-              <Link href="/sign-up">
-                <Button variant="outline" size="lg">
+              <SignInButton>
+                <Button size="lg" className="px-8 py-4 text-lg">
+                  <Zap className="mr-2 h-5 w-5" />
                   Start now
                 </Button>
-              </Link>
+              </SignInButton>
             </SignedOut>
+            <SignedIn>
+              <Link href="/pricing">
+                <Button size="lg" className="px-8 py-4 text-lg hover:scale-105">
+                  <Zap className="mr-2 h-5 w-5" />
+                  Download SwiftFast
+                </Button>
+              </Link>
+            </SignedIn>
           </AnimationContainer>
 
           <AnimationContainer
             delay={1.0}
-            className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-500 animate-fade-in"
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-muted-foreground"
           >
-            <div className="flex items-center space-x-2">
-              <svg
-                className="w-5 h-5 text-green-500"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>iOS 17+ Compatible</span>
+            <div className="flex items-center">
+              <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+              Clean Architecture include
             </div>
-            <div className="flex items-center space-x-2">
-              <svg
-                className="w-5 h-5 text-green-500"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>SwiftUI 6 Ready</span>
+            <div className="flex items-center">
+              <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+              MVVM + Dependency Injection
             </div>
-            <div className="flex items-center space-x-2">
-              <svg
-                className="w-5 h-5 text-green-500"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Lifetime updated</span>
+            <div className="flex items-center">
+              <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+              Ready for the App Store
             </div>
           </AnimationContainer>
         </AnimationContainer>
